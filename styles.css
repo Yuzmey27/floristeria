@@ -1,0 +1,517 @@
+body {
+  font-family: 'Times New Roman', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #111111;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#menu {
+  width: 200px;
+  height: 100vh;
+  background-color: #101828;
+  color: #ffffff;
+  padding-top: 10px;
+  position: fixed;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  zindex: 1000;
+
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#menu h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 85px;
+  letter-spacing: 6px;
+ 
+}
+
+#menu button {
+  position: relative;
+  display: block;
+  width: 80%;
+  width-rigth: 100%;
+  padding: 10px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px #ffffff;
+  border-right: 0;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px auto;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+#menu button:hover {
+  background-color: #fffffff;
+  color: #000000;
+}
+
+#menu button.active {
+  background-color: #ffffff
+  color: #000000;
+  border-right: none;
+  margin-right: -1px;
+  z-index: 2;
+
+}
+
+#menu button.active::before {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 2rem;
+  bottom: 100%;
+  right: 0;
+  background-color: transparent;
+  border-bottom-right-radius: .5rem;
+  box-shadow: 1rem #ffffff;
+}
+
+#menu button.active::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 2rem;
+  top: 100%;
+  right: 0;
+  background-color: transparent;
+  border-top-right-radius: .5rem;
+  box-shadow: -1rem #ffffff;
+}
+
+#menu button:hover {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+#contenido {
+  margin-left: 220px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 30px;
+  z-index: 1;
+
+}
+
+#portada {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#portada img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#barra-busqueda {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+}
+
+#busqueda 
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+
+#barra-busqueda input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #111111;
+  transition: box-shadow 0.3s ease;
+}
+
+#barra-busqueda button {
+  padding: 10px 20px;
+  background-color: #111111;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#barra-busqueda button:hover {
+  background-color: #101828;
+}
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  border: 2px dasher red;
+}
+
+.flor {
+  width: 200px;
+  background-color: #a0aec0;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.flor:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flor img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+}
+
+.flor p {
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+
+}
+
+footer {
+  background-color: #111111;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.producto-carrito {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #101828;
+}
+
+.producto-carrito p {
+    margin: 0 0 10px 0;
+}
+
+.producto-carrito button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #101828;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.producto-carrito button:hover {
+    background-color: #fffffff;
+}
+
+#logo {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#logo img {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #000; 
+}
+
+.mi-cuenta {
+    position: relative; /* Ajustamos para que respete el flujo */
+    background-color: #ffffff; /* Fondo blanco limpio */
+    color: #101828; /* Texto oscuro */
+    font-family: 'Times New Roman', serif;
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 800px; /* Limitar el ancho */
+    margin: 20px auto; /* Centrado horizontal */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.mi-cuenta h2 {
+    text-align: center; /* Centrar título */
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #101828;
+    border-bottom: 2px solid #a0aec0;
+    padding-bottom: 10px;
+}
+
+.mi-cuenta .seccion {
+    margin-bottom: 30px;
+}
+
+.mi-cuenta .seccion h3 {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.mi-cuenta .seccion p {
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+}
+
+/* Títulos */
+#auth-title, #cuenta h2 {
+  text-align: center;
+  color: #101828;
+  margin-bottom: 60px;
+}
+
+/* Inputs */
+#auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  box-sizing: border-box;
+}
+
+/* Botón */
+#auth-button {
+  width: 100%;
+  width-left: -200px;
+  background-color: #a0aec0;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#auth-button:hover {
+  background-color: #0c223f;
+}
+
+/* Texto de alternar entre login/registro */
+#toggle-auth {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+ 
+}
+
+#toggle-auth a {
+  color: #101828;
+  text-decoration: none;
+}
+
+#toggle-auth a:hover {
+  text-decoration: underline;
+}
+
+#cuenta li {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+footer {
+    background-color: #101828; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    text-align: center;
+    padding: 20px; /* Espaciado interno */
+    margin-top: 30px;
+    position: relative;
+    width: calc(100% - 200px); /* Ajuste dinámico para no tapar el menú */
+    margin-left: 80px; /* Asegura que no quede debajo del menú */
+    display: none; /* Oculta el footer por defecto */
+}
+
+footer.activo {
+    display: block; /* Activa el footer únicamente cuando corresponde */
+}
+
+footer .redes-sociales {
+    margin-bottom: 10px;
+}
+
+footer .redes-sociales a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+footer .redes-sociales img {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+}
+
+footer .redes-sociales img:hover {
+    transform: scale(1.2); 
+}
+
+#copy-link-section {
+    margin-top: 20px; /* Separación respecto a las redes sociales */
+}
+
+#copy-link-section input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+    margin-right: 10px;
+}
+
+#copy-link-section button {
+    padding: 5px 10px;
+    background-color: #0c223f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#copy-link-section button:hover {
+    background-color: #101828;
+}
+
+#pedidos-realizados {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+#pedidos-realizados h3 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.mis-pedidos {
+    background-color: #ffffff;
+    color: #101828;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    margin: 20px auto;
+    font-family: 'Times New Roman', serif;
+}
+
+.mis-pedidos h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.estado-pedido {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.estado-pedido div {
+    text-align: center;
+    width: 120px;
+}
+
+.estado-pedido div p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555555;
+}
+
+.estado-pedido div .icono {
+    font-size: 40px;
+    color: #101828;
+    transition: transform 0.3s ease;
+}
+
+.estado-pedido div .icono:hover {
+    transform: scale(1.2);
+}
+
+#comments .comentario img {
+    width: 40px; /* Tamaño pequeño */
+    height: 40px; /* Tamaño pequeño */
+    border-radius: 50%; /* Hace la imagen completamente redonda */
+    border: 2px solid #a0aec0; /* Borde decorativo alrededor */
+    object-fit: cover; /* Ajusta el contenido de la imagen */
+}
+
+.pedido-item button {
+    padding: 8px 12px;
+    background-color: #101828;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px; /* Espacio entre botones */
+}
+
+.pedido-item button:hover {
+    background-color: #3c3c3c; /* Oscurece el botón al pasar el cursor */
+}
+
+/* Estilo base para los botones de pedidos */
+.pedido-item button {
+    padding: 10px 15px;
+    background-color: #a0aec0; /* Color base */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Cambia el color al hacer hover */
+.pedido-item button:hover {
+    background-color: #888ea6; /* Un tono más oscuro para el hover */
+}
+
+/* Cambia el color al presionar */
+.pedido-item button:active {
+    background-color: #101828; /* Color que usaste como objetivo */
+    transform: scale(0.95); /* Pequeño efecto de "presionado" */
+}
+
+
+
+
