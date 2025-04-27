@@ -1,2 +1,0 @@
-# floristeria
-florerÍa
