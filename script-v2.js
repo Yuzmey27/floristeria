@@ -4,17 +4,15 @@ function inicializarPagina() {
     const portada = document.getElementById('portada');
     const buscador = document.getElementById('buscador');
 
-    // Mostrar la portada
     if (portada) portada.style.display = 'block';
 
-    // Mostrar el buscador
     if (buscador) buscador.style.display = 'block';
 
     console.log('Portada y buscador inicializados correctamente.');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    inicializarPagina(); // Inicializa los elementos visuales
+    inicializarPagina(); 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,14 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const usuario = JSON.parse(localStorage.getItem('userData'));
 
     if (redirigirA === 'catalogo') {
-        mostrarSeccion('catalogo'); // Muestra el catálogo directamente
-        inicializarPagina(); // Asegúrate de que portada y buscador estén visibles
+        mostrarSeccion('catalogo'); 
+        inicializarPagina(); 
         localStorage.removeItem('redirigirA');
     } else if (usuario) {
-        mostrarSeccion('cuenta'); // Mostrar "Mi Cuenta" si el usuario está autenticado
+        mostrarSeccion('cuenta'); 
         Swal.fire(`¡Bienvenido de nuevo, ${usuario.nombre || 'Usuario'}!`);
     } else {
-        mostrarSeccion('inicio-sesion'); // Mostrar "Inicio de Sesión" si no está autenticado
+        mostrarSeccion('inicio-sesion'); 
     }
 });
 
@@ -100,7 +98,6 @@ function agregarAlCarrito(nombre, precio, event) {
     event.preventDefault();
     console.log(`Añadiendo ${nombre} con precio ${precio}`);
     
-    // Agregar al carrito
     const florElemento = document.querySelector(`.flor[data-nombre="${nombre}"] img`);
     const imagenSrc = florElemento ? florElemento.src : `imagenes/${nombre.toLowerCase()}.jpg`;
     const productoExistente = carrito.find(item => item.nombre === nombre);
@@ -113,8 +110,7 @@ function agregarAlCarrito(nombre, precio, event) {
     alert(`${nombre} añadido al carrito`);
     mostrarCarrito();
 
-    // Agregar el producto también a "Mis Pedidos"
-    agregarPedido(nombre, 1); // 1 como cantidad inicial
+    agregarPedido(nombre, 1); 
 }
 
 function mostrarCarrito() {
@@ -153,7 +149,7 @@ function mostrarCarrito() {
 
 function incrementarCantidad(index) {
     carrito[index].cantidad++;
-    mostrarCarrito(); // Actualizar la vista
+    mostrarCarrito(); 
 }
 
 function disminuirCantidad(index) {
@@ -236,13 +232,13 @@ function mostrarComentarios(nombreFlor) {
     const comentariosDiv = document.getElementById('comments');
     if (!comentariosDiv) {
         console.error("Error: El contenedor 'comments' no existe en el DOM.");
-        return; // Termina si el contenedor no está presente
+        return; 
     }
 
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     const comentarios = pedidos.filter(pedido => pedido.producto === nombreFlor && pedido.comentario);
 
-    comentariosDiv.innerHTML = ''; // Limpia antes de renderizar
+    comentariosDiv.innerHTML = ''; 
 
     if (comentarios.length === 0) {
         comentariosDiv.innerHTML = '<p>No hay comentarios para esta flor.</p>';
@@ -252,7 +248,7 @@ function mostrarComentarios(nombreFlor) {
                 <div class="comentario" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
                     <img src="usuario-anonimo.jpg" alt="Usuario Anónimo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
                     <div>
-                        <p><strong>${pedido.fecha || "y****y"}:</strong></p>
+                        <p><strong>${pedido.fecha || "Usuario"}:</strong></p>
                         <p>${pedido.comentario}</p>
                     </div>
                 </div>
@@ -274,7 +270,7 @@ function mostrarPedidos() {
     }
 
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    pedidosEnCurso.innerHTML = ''; // Limpia la lista antes de renderizar
+    pedidosEnCurso.innerHTML = ''; 
 
     if (pedidos.length === 0) {
         pedidosEnCurso.innerHTML = '<li>No tienes pedidos registrados.</li>';
@@ -311,7 +307,7 @@ function enviarComentario(nombreProducto) {
             pedidos[pedidoIndex].comentario = comentario;
             localStorage.setItem('pedidos', JSON.stringify(pedidos));
             alert('¡Comentario enviado con éxito!');
-            mostrarComentarios(nombreProducto); // Actualiza los comentarios para mostrar el nuevo
+            mostrarComentarios(nombreProducto); 
         }
     }
 }
@@ -319,19 +315,16 @@ function enviarComentario(nombreProducto) {
 function actualizarPedido(index) {
     console.log(`Intentando actualizar el pedido en el índice: ${index}`);
     
-    // Recupera los pedidos desde el `localStorage`
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     const pedido = pedidos[index];
 
-    // Verifica si el pedido existe en el índice proporcionado
     if (!pedido) {
         console.error(`Error: No se encontró un pedido en el índice: ${index}`);
         alert("Error: No se encontró el pedido.");
         return;
     }
 
-    // Maneja la actualización del estado del pedido
-    if (pedido.estado === "Procesando") {
+        if (pedido.estado === "Procesando") {
         pedido.estado = "Enviado";
         alert(`El estado del pedido de ${pedido.producto} ha cambiado a: Enviado.`);
     } else if (pedido.estado === "Enviado") {
@@ -346,102 +339,95 @@ function actualizarPedido(index) {
         return;
     }
 
-    // Guarda los cambios en el `localStorage`
     pedidos[index] = pedido;
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     
-    // Actualiza la vista de pedidos
     mostrarPedidos();
 }
 
 function eliminarPedido(index) {
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    pedidos.splice(index, 1); // Elimina el pedido en el índice indicado
+    pedidos.splice(index, 1); 
     localStorage.setItem('pedidos', JSON.stringify(pedidos));
     mostrarPedidos();
 }
 
 function cerrarSesion() {
-    localStorage.removeItem('userData'); // Elimina los datos del usuario
-    usuarioAutenticado = false; // Actualiza el estado
+    localStorage.removeItem('userData'); 
+    usuarioAutenticado = false; 
     console.log('Sesión cerrada, usuario autenticado:', usuarioAutenticado);
     Swal.fire('Has cerrado sesión.');
-    mostrarSeccion('inicio-sesion'); // Redirige a "Inicio de Sesión"
+    mostrarSeccion('inicio-sesion'); 
 }
 
 function agregarPedido(producto, cantidad = 1) {
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || []; // Recuperar pedidos o crear lista vacía
+    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || []; 
     const nuevoPedido = {
         producto,
         cantidad,
-        estado: "Procesando", // Estado inicial
-        comentario: "" // Espacio para comentarios
+        estado: "Procesando", 
+        comentario: "" 
     };
 
-    pedidos.push(nuevoPedido); // Agregar nuevo pedido
-    localStorage.setItem('pedidos', JSON.stringify(pedidos)); // Guardar pedidos en localStorage
-    mostrarPedidos(); // Actualizar la vista
+    pedidos.push(nuevoPedido); 
+    localStorage.setItem('pedidos', JSON.stringify(pedidos)); 
+    mostrarPedidos(); 
     alert(`¡Pedido de ${producto} añadido correctamente!`);
 }
 
 function mostrarTodosLosProductos() {
     const productos = document.querySelectorAll('.flor');
     productos.forEach(producto => {
-        producto.style.display = 'block'; // Muestra todos los productos sin límite
+        producto.style.display = 'block'; 
     });
 }
 
 function eliminarPedido(index) {
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    pedidos.splice(index, 1); // Elimina el pedido por índice
-    localStorage.setItem('pedidos', JSON.stringify(pedidos)); // Actualiza el localStorage
-    mostrarPedidos(); // Refresca la lista
+    pedidos.splice(index, 1); 
+    localStorage.setItem('pedidos', JSON.stringify(pedidos)); 
+    mostrarPedidos(); 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    mostrarPedidos(); // Muestra pedidos automáticamente cuando se carga la página
+    mostrarPedidos(); 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
    if (!localStorage.getItem('pedidos')) {
-       const pedidosIniciales = []; // Inicializa vacío o con datos base
+       const pedidosIniciales = []; 
        localStorage.setItem('pedidos', JSON.stringify(pedidosIniciales));
    }
-   mostrarPedidos(); // Cargar pedidos existentes al abrir la página
+   mostrarPedidos(); 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos todos los botones dentro de los pedidos
+    
     const botonesPedidos = document.querySelectorAll('#pedidos-en-curso button');
 
-    // Aplicamos estilos dinámicos a cada botón
     botonesPedidos.forEach(boton => {
-        // Estilo base
+        
         boton.style.padding = "8px 12px";
-        boton.style.backgroundColor = "#a0aec0"; // Color base
+        boton.style.backgroundColor = "#a0aec0"; 
         boton.style.color = "white";
         boton.style.border = "none";
         boton.style.borderRadius = "5px";
         boton.style.cursor = "pointer";
         boton.style.transition = "background-color 0.3s, transform 0.2s";
 
-        // Cambiar color al pasar el mouse (hover)
         boton.addEventListener('mouseenter', () => {
-            boton.style.backgroundColor = "#888ea6"; // Un tono más oscuro
+            boton.style.backgroundColor = "#888ea6"; 
         });
 
-        // Restablecer color al salir del área del botón
         boton.addEventListener('mouseleave', () => {
-            boton.style.backgroundColor = "#a0aec0"; // Vuelve al color base
+            boton.style.backgroundColor = "#a0aec0"; 
         });
 
-        // Cambiar color y efecto al presionar el botón
         boton.addEventListener('mousedown', () => {
-            boton.style.backgroundColor = "#101828"; // Color presionado
-            boton.style.transform = "scale(0.95)"; // Efecto de compresión
+            boton.style.backgroundColor = "#101828"; 
+            boton.style.transform = "scale(0.95)"; 
         });
 
-        // Restablecer tamaño al soltar el botón
         boton.addEventListener('mouseup', () => {
             boton.style.transform = "scale(1)";
         });
@@ -452,9 +438,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const regresarCatalogoBtn = document.getElementById('regresarCatalogoBtn');
     if (regresarCatalogoBtn) {
         regresarCatalogoBtn.addEventListener('click', () => {
-            // Guarda manualmente el estado en localStorage
+            
             localStorage.setItem('redirigirA', 'catalogo');
-            window.location.href = 'index.html'; // Redirige a la página principal
+            window.location.href = 'index.html'; 
         });
     }
 });
@@ -479,13 +465,13 @@ function obtenerUsuarioAutenticado() {
 }
 
 function mostrarMiCuenta() {
-    actualizarEstadoAutenticacion(); // Sincroniza el estado
+    actualizarEstadoAutenticacion(); 
     if (usuarioAutenticado) {
-        mostrarSeccion('cuenta'); // Muestra la sección "Mi Cuenta"
+        mostrarSeccion('cuenta'); 
         const usuario = JSON.parse(localStorage.getItem('userData'));
         Swal.fire(`¡Bienvenido de nuevo, ${usuario.nombre || 'Usuario'}!`);
     } else {
-        mostrarSeccion('inicio-sesion'); // Redirige a "Inicio de Sesión"
+        mostrarSeccion('inicio-sesion'); 
         Swal.fire('Por favor, inicia sesión para continuar.');
     }
 }
@@ -531,12 +517,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function validarSesion() {
     const usuario = JSON.parse(localStorage.getItem('userData'));
-    return usuario ? usuario : null; // Retorna el usuario o null si no hay sesión
+    return usuario ? usuario : null; 
 }
 
 function actualizarEstadoAutenticacion() {
-    const usuario = JSON.parse(localStorage.getItem('userData')); // Recupera datos del usuario
-    usuarioAutenticado = usuario ? true : false; // Actualiza el estado
+    const usuario = JSON.parse(localStorage.getItem('userData')); 
+    usuarioAutenticado = usuario ? true : false; 
     console.log('Estado de autenticación actualizado:', usuarioAutenticado);
 }
 
